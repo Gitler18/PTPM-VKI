@@ -1,9 +1,13 @@
 import logging
 import math
 
+
+EPS = 1e-9
 logging.basicConfig(
+    filename="log",
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    encoding="utf-8"
 )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +34,7 @@ def calculate_triangle(side_a: str, side_b: str, side_c: str):
         logger.error("Стороны должны быть положительными числами")
         return "не треугольник", [(-1, -1), (-1, -1), (-1, -1)]
 
-    if a + b <= c or a + c <= b or b + c <= a:
+    if a + b - c <= EPS or a + c - b <= EPS or b + c - a <= EPS:
         logger.warning("Треугольник с такими сторонами не существует")
         return "не треугольник", [(-1, -1), (-1, -1), (-1, -1)]
 
@@ -99,15 +103,17 @@ def calculate_triangle(side_a: str, side_b: str, side_c: str):
 
 # Запуск программы
 if __name__ == "__main__":
-    side_a = input("Введите сторону A: ")
-    side_b = input("Введите сторону B: ")
-    side_c = input("Введите сторону C: ")
+    while True:
+        side_a = input("Введите сторону A: ")
+        side_b = input("Введите сторону B: ")
+        side_c = input("Введите сторону C: ")
 
-    triangle_type, coordinates = calculate_triangle(
-        side_a,
-        side_b,
-        side_c
-    )
+        triangle_type, coordinates = calculate_triangle(
+            side_a,
+            side_b,
+            side_c
+        )
 
-    print("Тип треугольника:", triangle_type)
-    print("Координаты вершин:", coordinates)
+        print("Тип треугольника:", triangle_type)
+        print("Координаты вершин:", coordinates)
+        print()
