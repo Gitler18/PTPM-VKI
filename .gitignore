@@ -1,14 +1,35 @@
-# Виртуальное окружение
-venv/
-ENV/
-env/
-
-# Кэш компиляции Python (создается при запусках unittest)
-**/__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Локальные системные файлы операционных систем
+# Системные файлы (OS metadata)
 .DS_Store
 Thumbs.db
+
+# Логи и временные файлы
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Папки зависимостей и сборки
+node_modules/
+bower_components/
+dist/
+build/
+out/
+
+# Конфигурации IDE и редакторов
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Секреты, ключи и локальные настройки
+.env
+.env.local
+.env.*.local
+config.local.json
+venv/
+__pycache__/
+*.pyc
+log.txt
